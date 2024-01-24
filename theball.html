@@ -1,13 +1,19 @@
-  
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>La Bola</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <canvas id="myCanvas" width="800" height="600" style="border:1px solid #d3d3d3;">
-    El navegador no aguanta HTML5
-    </canvas>
+    <div class="container">
+        <canvas id="myCanvas" width="800" height="600" style="border:1px solid #d3d3d3;">
+            La bola necesita HTML5 para funcionar.
+        </canvas>
+        <button id="decreaseButton" class="btn btn-success mt-3">Disminuir tamaño</button>
+        <button id="increaseButton" class="btn btn-danger mt-3">Aumentar tamaño</button>
+    </div>
+    </div>
     <script>
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
@@ -43,6 +49,18 @@
         color = getRandomColor();
     }
 
+    function decreaseBallSize() {
+        if (ballRadius > 1) {
+            ballRadius -= 1;
+            fontSize -= 0.5;
+        }
+    }
+
+    function increaseBallSize() {
+        ballRadius += 1;
+        fontSize += 0.5;
+    }
+
     function getRandomColor() {
         var letters = '0123456789ABCDEF';
         var color = '#';
@@ -52,6 +70,8 @@
         return color;
     }
 
+    document.getElementById("decreaseButton").addEventListener("click", decreaseBallSize);
+    document.getElementById("increaseButton").addEventListener("click", increaseBallSize);
     setInterval(draw, 1000);
     </script>
 </body>
